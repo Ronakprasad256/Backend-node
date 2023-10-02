@@ -1,5 +1,5 @@
-const productRepo = require('../repos/productRepo');
-const Logger = require('bunyan');
+const productRepo = require ('../repos/productRepo');
+const logger = require('../utils/appLogger');
 
 const getAll = async (req, res) => {
   try {
@@ -9,9 +9,10 @@ const getAll = async (req, res) => {
     const page = +req.params.page || 1; // page
     const pageSize = +req.params.size || 10; // how many  content we want to see on a webpage it may 1, 2 , 5 or 10 #any
     const products = await productRepo.get(page, pageSize, sort, dir, search);
-    Logger.info("Get All Products Request Made");
+    logger.info("Get All Products Request made")
     res.status(200).json(products);
   } catch (error) {
+    logger.error("Some Error Occured")
     console.error(error);
     res.status(500).send('Internl Server Error');
   }
