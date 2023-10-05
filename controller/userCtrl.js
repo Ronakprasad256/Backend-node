@@ -1,5 +1,5 @@
 const userRepo = require('../repos/userRepo');
-const crypto = require('../utils/bcrypt');
+const crypto = require('../utils/crypto');
 
 const allUsers = async (req, res) => {
   try {
@@ -35,18 +35,21 @@ const signup = async (req, res) => {
 const signin = async (req, res) => {
   const data = req.body;
   const user = await userRepo.getByEmail(data.email);
-  console.log("dbuser", user);
+  console.log('dbuser', user);
   if (!user) {
     res.status(401);
-    res.send("Email or Password Wrong");
+    res.send('Email or Password Wrong');
   } else {
     const verify = await crypto.compare(data.password, user.password);
     if (verify) {
       res.status(401);
-      res.send("Email or Password Wrong")
+      res.send('Login Successful');
+    } else {
+      res.status(401);
+      res.send('Email or Password Wrong');
     }
   }
-}
+};
 
 module.exports = {
   allUsers,

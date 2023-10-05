@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 
 const genHash = pass => {
-    return bcrypt.hash(pass, 2)
+    return bcrypt.hash(pass, 2);
 };
 
 const compare = (pass, dbpass) => {

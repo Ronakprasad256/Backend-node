@@ -10,8 +10,8 @@ const create = (data) => {
 };
 
 const getByEmail = (email) => {
-    return userModel.findOne({ email: email}, {email: 1, password: 1})
-}
+    return userModel.findOne({ email: email }, { email: 1, password: 1 })
+};
 
 module.exports = {
     get,
