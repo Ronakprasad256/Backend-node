@@ -16,4 +16,5 @@ const getByEmail = (email) => {
 module.exports = {
     get,
     create,
+    getByEmail,
 };
