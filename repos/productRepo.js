@@ -1,4 +1,5 @@
 const productModel = require('../model/productModel');
+const ReviewModel = require('../model/reviewModel')
 
 const get = (page, pageSize, sort, dir, search) => {
   let filter = {};
@@ -14,7 +15,7 @@ const get = (page, pageSize, sort, dir, search) => {
   }
 
   return productModel
-    .find(filter, { __v: 0, _id: 0 })
+    .find(filter, { __v: 0 })
     .sort({ [sort]: dir }) //if we write sort directly it will search for the key at the data i.e why we have to write it on a dynamic value
     .skip((page - 1) * pageSize)
     .limit(pageSize);
@@ -26,7 +27,7 @@ const create = (data) => {
 };
 
 const getById = (id) => {
-  const product = productModel.find({ _id: id });
+  const product = productModel.findOne({ _id: id });
   return product;
 };
 

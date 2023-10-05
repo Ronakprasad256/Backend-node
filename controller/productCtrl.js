@@ -1,4 +1,5 @@
-const productRepo = require ('../repos/productRepo');
+const productRepo = require('../repos/productRepo');
+const reviewRepo = require("../repos/reviewRepo");
 const logger = require('../utils/appLogger');
 
 const getAll = async (req, res) => {
@@ -33,6 +34,11 @@ const singleProduct = async (req, res) => {
   try {
     const id = req.params.id;
     const product = await productRepo.getById(id);
+    const reviews = await reviewRepo.getById(id);
+    const data = {
+      product,
+      reviews,
+    }
     res.status(200).json(product);
   } catch (error) {
     console.error(error);
