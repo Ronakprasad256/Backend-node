@@ -10,7 +10,7 @@ const defaultRouter = require('./Router/defaultRouter');
 const userRouter = require("./Router/userRouter");
 const bookRouter = require('./Router/bookRouter');
 const productRouter = require('./Router/productRouter');
-const reviewRouter = require('./Router/reviewRouter')
+const reviewRouter = require('./Router/reviewRouter');
 
 const app = express();
 dotenv.config();
@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log('Server is running on 5000!'));
 mongoose
-  .connect("mongodb://127.0.0.1:27017")
+  .connect("mongodb://127.0.0.1:27017/node")
   .then(() => console.log('DB is Connected!'))
   .catch((err) => console.log(err));
 
