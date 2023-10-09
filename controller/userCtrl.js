@@ -1,5 +1,6 @@
 const userRepo = require('../repos/userRepo');
 const crypto = require('../utils/crypto');
+const auth = require("../utils/auth")
 
 const allUsers = async (req, res) => {
   try {
@@ -42,8 +43,13 @@ const signin = async (req, res) => {
   } else {
     const verify = await crypto.compare(data.password, user.password);
     if (verify) {
-      res.status(401);
-      res.send('Login Successful');
+      const token = auth.generatetoken({ email: data.email });
+      const response = {
+        message: "Login Successfful!",
+        token,
+      };
+      res.status(200);
+      res.send(response);
     } else {
       res.status(401);
       res.send('Email or Password Wrong');

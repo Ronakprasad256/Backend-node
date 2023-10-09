@@ -11,6 +11,7 @@ const userRouter = require("./Router/userRouter");
 const bookRouter = require('./Router/bookRouter');
 const productRouter = require('./Router/productRouter');
 const reviewRouter = require('./Router/reviewRouter');
+const auth = require("./middleWare/auth")
 
 const app = express();
 dotenv.config();
@@ -34,5 +35,6 @@ app.use(bodyParser.json());
 app.use('/', defaultRouter);
 app.use('/users', userRouter);
 app.use('/books', bookRouter);
+app.use(auth.tokenAuth);
 app.use('/products', productRouter);
 app.use('/reviews', reviewRouter);
