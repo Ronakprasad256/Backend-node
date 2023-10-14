@@ -40,5 +40,5 @@ const tokenAuth = (req, res, next) => {
 
 module.exports = {
   authenticate,
-  tokenAuth,
+  tokenAuth
 };
